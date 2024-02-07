@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_commerce/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
+import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/promo_slider.dart';
@@ -63,11 +64,14 @@ class HomeScreen extends StatelessWidget {
             // Body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
-              child: TPromoSlider(
-                banners: [
-                  TImages.promoBanner1,
-                  TImages.promoBanner2,
-                  TImages.promoBanner3,
+              child: Column(
+                children: [
+                  TPromoSlider(
+                    banners: [TImages.promoBanner1, TImages.promoBanner2, TImages.promoBanner3],
+                  ),
+                  SizedBox(height: TSizes.spaceBtwSections),
+                  TProductCardVertical(
+                  ),
                 ],
               ),
             ),
@@ -77,5 +81,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
