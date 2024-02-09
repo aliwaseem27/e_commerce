@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:e_commerce/common/styles/shadows.dart';
 import 'package:e_commerce/common/widgets/images/t_rounded_image.dart';
 import 'package:e_commerce/common/widgets/texts/product_title_text.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
-import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/image_strings.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
@@ -43,7 +41,7 @@ class TProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   // Thumbnail Image
-                  TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true),
+                  const TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true),
 
                   // Sale Tag
                   Positioned(
@@ -51,13 +49,13 @@ class TProductCardVertical extends StatelessWidget {
                     child: TRoundedContainer(
                       radius: TSizes.sm,
                       backgroundColor: TColors.secondary.withOpacity(0.8),
-                      padding: EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
+                      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
                       child: Text("25%", style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
                     ),
                   ),
 
                   // Favourite Icon Button
-                  Positioned(
+                  const Positioned(
                     right: 0,
                     top: 0,
                     child: TCircularIcon(
@@ -71,13 +69,13 @@ class TProductCardVertical extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwItems / 2),
 
             // Details
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TProductTitleText(title: "Green Nike Air Shoes", smallSize: true),
-                  const SizedBox(height: TSizes.spaceBtwItems / 2),
+                  SizedBox(height: TSizes.spaceBtwItems / 2),
                   TBrandTitleWithVerifiedIcon(
                     title: "Nike",
                   ),
@@ -86,14 +84,14 @@ class TProductCardVertical extends StatelessWidget {
             ),
 
             // Spacer
-            Spacer(),
+            const Spacer(),
 
             // Price Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: TSizes.sm),
+                const Padding(
+                  padding: EdgeInsets.only(left: TSizes.sm),
                   child: TProductPriceText(price: '35.5', isLarge: true),
                 ),
                 Container(

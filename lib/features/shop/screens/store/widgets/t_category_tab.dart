@@ -19,11 +19,11 @@ class TCategoryTab extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
               // Brands
-              TBrandShowcase(
+              const TBrandShowcase(
                 images: [
                   TImages.productImage1,
                   TImages.productImage2,
@@ -35,7 +35,7 @@ class TCategoryTab extends StatelessWidget {
               TSectionHeading(title: "You might like",  onPressed: (){}),
               const SizedBox(height: TSizes.spaceBtwItems),
 
-              TGridLayout(itemCount: 4, itemBuilder: (context, index)=> TProductCardVertical())
+              TGridLayout(itemCount: 4, itemBuilder: (context, index)=> const TProductCardVertical())
             ],
           ),
         ),
