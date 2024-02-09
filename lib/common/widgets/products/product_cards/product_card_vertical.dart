@@ -1,9 +1,10 @@
 import 'dart:developer';
 
 import 'package:e_commerce/common/styles/shadows.dart';
-import 'package:e_commerce/common/widgets/images/rounded_image.dart';
+import 'package:e_commerce/common/widgets/images/t_rounded_image.dart';
 import 'package:e_commerce/common/widgets/texts/product_title_text.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
+import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/image_strings.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
@@ -13,6 +14,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../custom_shapes/containers/t_rounded_container.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../texts/product_price_text.dart';
+import '../../texts/t_brand_title_with_verified_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
@@ -76,17 +78,8 @@ class TProductCardVertical extends StatelessWidget {
                 children: [
                   TProductTitleText(title: "Green Nike Air Shoes", smallSize: true),
                   const SizedBox(height: TSizes.spaceBtwItems / 2),
-                  Row(
-                    children: [
-                      Text(
-                        "Nike",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(width: TSizes.xs),
-                      Icon(Iconsax.verify5, color: TColors.primary, size: TSizes.iconXs),
-                    ],
+                  TBrandTitleWithVerifiedIcon(
+                    title: "Nike",
                   ),
                 ],
               ),
@@ -127,3 +120,7 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+
+
+
