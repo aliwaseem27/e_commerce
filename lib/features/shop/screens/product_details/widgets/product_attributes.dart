@@ -26,8 +26,8 @@ class TProductAttributes extends StatelessWidget {
               // Title, Price & Stock Status
               Row(
                 children: [
-                  TSectionHeading(title: "Variation", showActionButton: false),
-                  SizedBox(width: TSizes.spaceBtwItems),
+                  const TSectionHeading(title: "Variation", showActionButton: false),
+                  const SizedBox(width: TSizes.spaceBtwItems),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -51,7 +51,7 @@ class TProductAttributes extends StatelessWidget {
                       // Stock
                       Row(
                         children: [
-                          TProductTitleText(title: "Stock : ", smallSize: true),
+                          const TProductTitleText(title: "Stock : ", smallSize: true),
                           Text("In Stock", style: Theme.of(context).textTheme.titleMedium),
                         ],
                       ),
@@ -75,8 +75,8 @@ class TProductAttributes extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TSectionHeading(title: "Colors", showActionButton: false),
-            SizedBox(height: TSizes.spaceBtwItems / 2),
+            const TSectionHeading(title: "Colors", showActionButton: false),
+            const SizedBox(height: TSizes.spaceBtwItems / 2),
             Wrap(
               spacing: 8,
               children: [
@@ -96,8 +96,8 @@ class TProductAttributes extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TSectionHeading(title: "Size", showActionButton: false),
-            SizedBox(height: TSizes.spaceBtwItems / 2),
+            const TSectionHeading(title: "Size", showActionButton: false),
+            const SizedBox(height: TSizes.spaceBtwItems / 2),
             Wrap(
               spacing: 8,
               children: [
