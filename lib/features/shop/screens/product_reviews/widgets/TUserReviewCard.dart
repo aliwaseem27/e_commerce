@@ -34,13 +34,13 @@ class TUserReviewCard extends StatelessWidget {
         // Reviews
         Row(
           children: [
-            TRatingBarIndicator(rating: 4),
-            SizedBox(width: TSizes.spaceBtwItems),
+            const TRatingBarIndicator(rating: 4),
+            const SizedBox(width: TSizes.spaceBtwItems),
             Text("22 Feb, 2024", style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(height: TSizes.spaceBtwItems),
-        ReadMoreText(
+        const ReadMoreText(
           "The user interface of the app is quite intutive. I was able to navigate and make pruchases seamlessly. Great job!",
           trimLines: 2,
           trimMode: TrimMode.Line,
@@ -55,7 +55,7 @@ class TUserReviewCard extends StatelessWidget {
         TRoundedContainer(
           backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
           child: Padding(
-            padding: EdgeInsets.all(TSizes.md),
+            padding: const EdgeInsets.all(TSizes.md),
             child: Column(
               children: [
                 Row(
@@ -66,7 +66,7 @@ class TUserReviewCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems),
-                ReadMoreText(
+                const ReadMoreText(
                   "The user interface of the app is quite intutive. I was able to navigate and make pruchases seamlessly. Great job!",
                   trimLines: 2,
                   trimMode: TrimMode.Line,

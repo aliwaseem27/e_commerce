@@ -13,7 +13,7 @@ class TRatingBarIndicator extends StatelessWidget {
     return RatingBarIndicator(
       rating: rating,
       itemSize: 20,
-      itemBuilder: (context, index) => Icon(
+      itemBuilder: (context, index) => const Icon(
         Iconsax.star1,
         color: TColors.primary,
       ),
