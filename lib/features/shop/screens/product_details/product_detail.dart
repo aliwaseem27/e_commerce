@@ -4,9 +4,11 @@ import 'package:e_commerce/features/shop/screens/product_details/widgets/image_s
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/rating_share_widget.dart';
+import 'package:e_commerce/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetail extends StatelessWidget {
@@ -69,7 +71,7 @@ class ProductDetail extends StatelessWidget {
                   // Reviews
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
-                  TSectionHeading(title: "Reviews(199)", onPressed: () {}),
+                  TSectionHeading(title: "Reviews(199)", onPressed: () => Get.to(()=> const ProductReviewsScreen())),
                   const SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
