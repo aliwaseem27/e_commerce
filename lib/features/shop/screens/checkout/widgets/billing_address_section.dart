@@ -37,6 +37,5 @@ class TBillingAddressSection extends StatelessWidget {
         ),
       ],
     );
-    ;
   }
 }

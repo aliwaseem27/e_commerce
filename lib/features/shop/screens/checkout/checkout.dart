@@ -28,15 +28,15 @@ class CheckoutScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
               // Items in cart
-              TCartItems(showAddRemoveButton: false),
+              const TCartItems(showAddRemoveButton: false),
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Coupon TextField
-              TCouponCode(),
+              const TCouponCode(),
               const SizedBox(height: TSizes.spaceBtwSections),
 
               // Billing Section
@@ -44,23 +44,23 @@ class CheckoutScreen extends StatelessWidget {
                 showBorder: true,
                 padding: const EdgeInsets.all(TSizes.md),
                 backgroundColor: dark ? TColors.black : TColors.white,
-                child: Column(
+                child: const Column(
                   children: [
                     // Pricing
                     TBillingAmountSection(),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                    SizedBox(height: TSizes.spaceBtwItems),
 
                     // Divider
                     Divider(),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                    SizedBox(height: TSizes.spaceBtwItems),
 
                     // Payment Methods
                     TBillingPaymentSection(),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                    SizedBox(height: TSizes.spaceBtwItems),
 
                     // Address
                     TBillingAddressSection(),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                    SizedBox(height: TSizes.spaceBtwItems),
                   ],
                 ),
               ),
