@@ -3,6 +3,7 @@ import 'package:e_commerce/common/widgets/custom_shapes/containers/primary_heade
 import 'package:e_commerce/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:e_commerce/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce/features/personalization/screens/address/address.dart';
+import 'package:e_commerce/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce/features/shop/screens/order/order.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -55,11 +56,13 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: "Set shopping delivery address",
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
-                  const TSettingsMenuTile(
-                      icon: Iconsax.shopping_cart,
-                      title: "My Cart",
-                      subTitle: "Add, remove products and move to checkout"),
-                   TSettingsMenuTile(
+                  TSettingsMenuTile(
+                    icon: Iconsax.shopping_cart,
+                    title: "My Cart",
+                    subTitle: "Add, remove products and move to checkout",
+                    onTap: () => Get.to(() => const CartScreen()),
+                  ),
+                  TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
                     title: "My Orders",
                     subTitle: "In-progress and Completed Orders",
