@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "492075751102",
+    "project_id": "beststoreapp-1368c",
+    "storage_bucket": "beststoreapp-1368c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492075751102:android:a941e14918d59b2fc3b0ef",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHjJLHYqS3xOo3tmncgq6UKYJI7K7nKVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
