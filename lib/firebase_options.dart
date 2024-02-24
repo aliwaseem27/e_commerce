@@ -69,6 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '492075751102',
     projectId: 'beststoreapp-1368c',
     storageBucket: 'beststoreapp-1368c.appspot.com',
+    androidClientId: '492075751102-doghtnfvrc432dsfckqa57eegc195shh.apps.googleusercontent.com',
+    iosClientId: '492075751102-s27j1j9qaqd70esjndnan855qigd9as3.apps.googleusercontent.com',
     iosBundleId: 'com.example.eCommerce',
   );
 }
