@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants/image_strings.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({super.key});
+   OnBoardingScreen({super.key});
 
   final controller = Get.put(OnBoardingController());
 
