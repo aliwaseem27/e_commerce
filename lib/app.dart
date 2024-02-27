@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      home: Scaffold(
+      home: const Scaffold(
         backgroundColor: TColors.primary,
         body: Center(
           child: CircularProgressIndicator(
