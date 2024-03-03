@@ -1,3 +1,5 @@
+import 'package:e_commerce/utils/constants/image_strings.dart';
+import 'package:e_commerce/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,7 @@ class SignupController extends GetxController{
   Future<void> signup() async {
     try {
       // Start Loading
+      TFullScreenLoader.openLoadingDialog("We are processing your information...", TImages.paypal);
 
       // Check Internet Connectivity
 
