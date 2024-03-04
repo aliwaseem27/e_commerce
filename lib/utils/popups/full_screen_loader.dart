@@ -10,15 +10,18 @@ class TFullScreenLoader {
     showDialog(
       context: Get.overlayContext!,
       barrierDismissible: false,
-      builder: (context) => Container(
-        color: THelperFunctions.isDarkMode(Get.context!) ? TColors.dark : TColors.white,
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            const SizedBox(height: 250),
-            TAnimationLoaderWidget(text: text, animation: animation),
-          ],
+      builder: (context) => PopScope(
+        canPop: false,
+        child: Container(
+          color: THelperFunctions.isDarkMode(Get.context!) ? TColors.dark : TColors.white,
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            children: [
+              const SizedBox(height: 250),
+              TAnimationLoaderWidget(text: text, animation: animation),
+            ],
+          ),
         ),
       ),
     );

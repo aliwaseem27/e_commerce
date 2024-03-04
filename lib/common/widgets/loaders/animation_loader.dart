@@ -1,6 +1,7 @@
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class TAnimationLoaderWidget extends StatelessWidget {
   const TAnimationLoaderWidget({
@@ -24,7 +25,7 @@ class TAnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Lottie.asset(animation, width: MediaQuery.of(context).size.width * 0.8),
+          Lottie.asset(animation, width: MediaQuery.of(context).size.width * 0.8),
           const SizedBox(height: TSizes.defaultSpace),
           Text(
             text,
