@@ -1,9 +1,14 @@
+import 'package:e_commerce/data/repositories/authentication/authentication_repository.dart';
+import 'package:e_commerce/data/repositories/user/user_repository.dart';
+import 'package:e_commerce/features/authentication/screens/signup/verify_email.dart';
 import 'package:e_commerce/utils/constants/image_strings.dart';
 import 'package:e_commerce/utils/helpers/network_manager.dart';
 import 'package:e_commerce/utils/popups/full_screen_loader.dart';
 import 'package:e_commerce/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../models/user_model.dart';
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
@@ -20,10 +25,10 @@ class SignupController extends GetxController {
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   /// SIGNUP
-  Future<void> signup() async {
+  void signup() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog("We are processing your information...", TImages.paypal);
+      TFullScreenLoader.openLoadingDialog("We are processing your information...", TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -42,18 +47,38 @@ class SignupController extends GetxController {
       }
 
       // Register user in the FireBase Authentication & Save user data in the FireBase
+      final userCredential =
+          await AuthenticationRepository.instance.registerWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Save authenticated user data in the FireStore
+      final newUser = UserModel(
+        id: userCredential.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        username: username.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: "",
+      );
 
-      // Show Success Message
+      final userRepository = Get.put(UserRepository());
+      userRepository.saveUserRecord(newUser);
 
-      // Move to verify email screen
-    } catch (e) {
-      // Show more Generic Error to the user
-      TLoaders.errorSnackBar(title: "Oh snap!", message: e.toString());
-    } finally {
       // Remove Loader
       TFullScreenLoader.stopLoading();
+
+      // Show Success Message
+      TLoaders.successSnackBar(
+          title: "Congratulations", message: "Your account has been created! Verify email to continue.");
+
+      // Move to verify email screen
+      Get.to(() => const VerifyEmailScreen());
+    } catch (e) {
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Show more Generic Error to the user
+      TLoaders.errorSnackBar(title: "Oh snap!", message: e.toString());
     }
   }
 }

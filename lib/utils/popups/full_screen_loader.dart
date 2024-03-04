@@ -16,7 +16,7 @@ class TFullScreenLoader {
           color: THelperFunctions.isDarkMode(Get.context!) ? TColors.dark : TColors.white,
           width: double.infinity,
           height: double.infinity,
-          child: Column(
+          child: ListView(
             children: [
               const SizedBox(height: 250),
               TAnimationLoaderWidget(text: text, animation: animation),
