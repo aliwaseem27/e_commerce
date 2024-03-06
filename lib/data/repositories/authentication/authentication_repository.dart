@@ -58,6 +58,21 @@ class AuthenticationRepository extends GetxController {
   /// [ReAuthenticate] - ReAuthenticate User
 
   /// [EmailAuthentication] - Mail Verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try again.";
+    }
+  }
 
   /// [EmailAuthentication] - Forget Password
 
