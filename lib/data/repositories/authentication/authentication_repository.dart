@@ -1,5 +1,7 @@
 import 'package:e_commerce/features/authentication/screens/login/login.dart';
 import 'package:e_commerce/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:e_commerce/features/authentication/screens/signup/verify_email.dart';
+import 'package:e_commerce/navigation_menu.dart';
 import 'package:e_commerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:e_commerce/utils/exceptions/firebase_exceptions.dart';
 import 'package:e_commerce/utils/exceptions/format_exceptions.dart';
@@ -27,11 +29,21 @@ class AuthenticationRepository extends GetxController {
 
   /// Function to show relevant screen
   screenRedirect() async {
-    // Local Storage
-    deviceStorage.writeIfNull("isFirstTime", true);
-    deviceStorage.read("isFirstTime") != true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(() => OnBoardingScreen());
+    final user = _auth.currentUser;
+    if(user != null){
+      if(user.emailVerified){
+        Get.offAll(()=> const NavigationMenu());
+      } else {
+        Get.offAll(()=> VerifyEmailScreen(email: _auth.currentUser?.email));
+      }
+    } else {
+      // Local Storage
+      deviceStorage.writeIfNull("isFirstTime", true);
+      deviceStorage.read("isFirstTime") != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(() => OnBoardingScreen());
+    }
+
   }
 
 /* -------------- Email & Password sign-in -------------- */
@@ -85,6 +97,22 @@ class AuthenticationRepository extends GetxController {
 /* -------------- ./end Federated identity & social sign-in -------------- */
 
   /// [LogoutUser] - Valid for any authentication
+  Future<void> logout() async{
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(()=> const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try again.";
+    }
+  }
 
   /// DeleteUser - Remove user auth and FireStore Account
 }
