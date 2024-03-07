@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -30,11 +31,11 @@ class AuthenticationRepository extends GetxController {
   /// Function to show relevant screen
   screenRedirect() async {
     final user = _auth.currentUser;
-    if(user != null){
-      if(user.emailVerified){
-        Get.offAll(()=> const NavigationMenu());
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(() => const NavigationMenu());
       } else {
-        Get.offAll(()=> VerifyEmailScreen(email: _auth.currentUser?.email));
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
       }
     } else {
       // Local Storage
@@ -43,7 +44,6 @@ class AuthenticationRepository extends GetxController {
           ? Get.offAll(() => const LoginScreen())
           : Get.offAll(() => OnBoardingScreen());
     }
-
   }
 
 /* -------------- Email & Password sign-in -------------- */
@@ -106,16 +106,44 @@ class AuthenticationRepository extends GetxController {
 /* -------------- Federated identity & social sign-in -------------- */
 
   /// [GoogleAuthentication] - Google
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+
+      // Create a new credential
+      final credentials =
+          GoogleAuthProvider.credential(accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credentials);
+
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try again.";
+    }
+  }
 
   /// [FacebookAuthentication] - Facebook
 
 /* -------------- ./end Federated identity & social sign-in -------------- */
 
   /// [LogoutUser] - Valid for any authentication
-  Future<void> logout() async{
+  Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
-      Get.offAll(()=> const LoginScreen());
+      Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
