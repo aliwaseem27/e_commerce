@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/utils/formatters/formatter.dart';
 
 /// Model class representing user data
