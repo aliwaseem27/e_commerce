@@ -1,3 +1,4 @@
+import 'package:e_commerce/common/widgets/loaders/shimmer.dart';
 import 'package:e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,10 +22,14 @@ class THomeAppBar extends StatelessWidget {
         children: [
           Text(TTexts.homeAppbarTitle, style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey)),
           Obx(() {
-            return Text(
-              controller.user.value.fullName,
-              style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white),
-            );
+            if (controller.profileLoading.value) {
+              return const TShimmerEffect(width: 80, height: 15);
+            } else {
+              return Text(
+                controller.user.value.fullName,
+                style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white),
+              );
+            }
           }),
         ],
       ),
