@@ -6,7 +6,10 @@ import 'package:e_commerce/features/personalization/screens/profile/widgets/prof
 import 'package:e_commerce/utils/constants/image_strings.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../change_name/change_name.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -39,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
               const TSectionHeading(title: "Profile Information", showActionButton: false),
               const SizedBox(height: TSizes.spaceBtwItems),
 
-              TProfileMenu(title: "Name", value: controller.user.value.fullName, onPressed: () {}),
+              TProfileMenu(title: "Name", value: controller.user.value.fullName, onPressed: () => Get.to(()=> const ChangeName())),
               TProfileMenu(title: "Username", value: controller.user.value.username, onPressed: () {}),
 
               const SizedBox(height: TSizes.spaceBtwItems),
