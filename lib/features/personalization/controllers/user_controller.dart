@@ -1,17 +1,23 @@
 import 'package:e_commerce/data/repositories/user/user_repository.dart';
 import 'package:e_commerce/features/authentication/models/user_model.dart';
+import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
+  final profileLoading = false.obs;
+  Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
 
-  Rx<UserModel> user = UserModel.empty().obs;
-
-  final profileLoading = false.obs;
+  final hidePassword = false.obs;
+  final verifyEmail = TextEditingController();
+  final verifyPassword = TextEditingController();
+  GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -61,4 +67,34 @@ class UserController extends GetxController {
       );
     }
   }
+
+  // Delete Account Warning
+  void deleteAccountWarningPopup() {
+    Get.defaultDialog(
+      contentPadding: const EdgeInsets.all(TSizes.md),
+      title: "Delete Account",
+      middleText:
+          "Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.",
+      confirm: ElevatedButton(
+        onPressed: () async => deleteUserAccount(),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.red, side: BorderSide(color: Colors.red)),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          child: Text("Delete"),
+        ),
+      ),
+      cancel: OutlinedButton(
+        onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+        child: const Text("Cancel"),
+      ),
+    );
+  }
+
+  // Delete User Account
+  void deleteUserAccount() async {
+
+  }
+
+  // Re-Authenticate before deleting
+  Future<void> reAuthenticateEmailAndPasswordUser() async {}
 }
