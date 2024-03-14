@@ -19,7 +19,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
 
-  final hidePassword = false.obs;
+  final hidePassword = true.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();

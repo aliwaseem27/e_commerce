@@ -15,7 +15,7 @@ class THomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UserController());
+    final controller = Get.put(UserController(), permanent: true);
     return TAppBar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

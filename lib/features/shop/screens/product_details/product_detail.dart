@@ -6,7 +6,6 @@ import 'package:e_commerce/features/shop/screens/product_details/widgets/product
 import 'package:e_commerce/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:e_commerce/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
-import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
@@ -16,7 +15,6 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: const TBottomAddToCart(),
       body: SingleChildScrollView(
@@ -75,7 +73,7 @@ class ProductDetail extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

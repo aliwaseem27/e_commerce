@@ -2,6 +2,7 @@ import 'package:e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:e_commerce/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce/features/authentication/controllers/logout/logout_controller.dart';
 import 'package:e_commerce/features/personalization/screens/address/address.dart';
 import 'package:e_commerce/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce/features/shop/screens/order/order.dart';
@@ -18,6 +19,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LogoutController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -116,7 +118,7 @@ class SettingsScreen extends StatelessWidget {
                   // Logout Button
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: () {}, child: const Text("Logout")),
+                    child: OutlinedButton(onPressed: () => controller.logoutWarningPopup(), child: const Text("Logout")),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections * 1.5),
                 ],
