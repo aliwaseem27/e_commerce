@@ -2,7 +2,6 @@ import 'package:e_commerce/features/personalization/controllers/user_controller.
 import 'package:e_commerce/features/personalization/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/constants/colors.dart';
