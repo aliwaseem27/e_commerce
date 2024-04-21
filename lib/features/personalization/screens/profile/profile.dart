@@ -1,5 +1,6 @@
 import 'package:e_commerce/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce/common/widgets/images/t_circular_image.dart';
+import 'package:e_commerce/common/widgets/loaders/shimmer.dart';
 import 'package:e_commerce/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:e_commerce/features/personalization/screens/profile/widgets/profile_menu.dart';
@@ -7,6 +8,7 @@ import 'package:e_commerce/utils/constants/image_strings.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'widgets/change_name.dart';
@@ -29,8 +31,23 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const TCircularImage(image: TImages.user, width: 80, height: 80),
-                    TextButton(onPressed: () {}, child: const Text("Change Profile Picture")),
+                    Obx(
+                      () {
+                        final networkImage = controller.user.value.profilePicture;
+                        final image = networkImage.isNotEmpty ? networkImage : TImages.user;
+                        return controller.imageUploading.value
+                            ? const TShimmerEffect(width: 80, height: 80, radius: 80)
+                            : TCircularImage(
+                                image: image,
+                                width: 80,
+                                height: 80,
+                                isNetworkImage: networkImage.isNotEmpty,
+                              );
+                      },
+                    ),
+                    TextButton(
+                        onPressed: () => controller.uploadProfilePicture(),
+                        child: const Text("Change Profile Picture")),
                   ],
                 ),
               ),
@@ -42,7 +59,10 @@ class ProfileScreen extends StatelessWidget {
               const TSectionHeading(title: "Profile Information", showActionButton: false),
               const SizedBox(height: TSizes.spaceBtwItems),
 
-              TProfileMenu(title: "Name", value: controller.user.value.fullName, onPressed: () => Get.to(()=> const ChangeName())),
+              TProfileMenu(
+                  title: "Name",
+                  value: controller.user.value.fullName,
+                  onPressed: () => Get.to(() => const ChangeName())),
               TProfileMenu(title: "Username", value: controller.user.value.username, onPressed: () {}),
 
               const SizedBox(height: TSizes.spaceBtwItems),
